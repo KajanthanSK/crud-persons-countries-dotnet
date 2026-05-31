@@ -1,0 +1,116 @@
+﻿using ServiceContracts;
+using ServiceContracts.DTO;
+using ServiceContracts.Enums;
+using Services;
+using System;
+using Xunit;
+
+namespace CRUDTests
+{
+    public class PersonsServiceTest
+    {
+        private readonly IPersonsService _personService;
+        private readonly ICountriesService _countriesService;
+
+        public PersonsServiceTest()
+        {
+            _personService = new PersonsService();
+            _countriesService=new CountriesService();
+        }
+
+        #region AddPerson Tests[Fact]
+        /// <summary>
+        /// AddPerson method should throw ArgumentNullException when the input PersonAddRequest is null.
+        /// </summary>
+        [Fact]
+        public void AddPerson_NullPerson()
+        {
+            //Arrange
+            PersonAddRequest? personAddRequest = null;
+            //Assert and Act
+            Assert.Throws<ArgumentNullException>(() => _personService.AddPerson(personAddRequest));
+        }
+
+        /// <summary>
+        /// Verifies that the AddPerson method throws an ArgumentException when the PersonName property of the request
+        /// is null.
+        /// </summary>
+        /// <remarks>This test ensures that the AddPerson method enforces the requirement that PersonName
+        /// must not be null, helping to validate input parameter checks.</remarks>
+        [Fact]
+        public void AddPerson_PersonNameIsNull()
+        {
+            //Arrange
+            PersonAddRequest? personAddRequest = new PersonAddRequest() { PersonName = null };
+            //Assert and Act
+            Assert.Throws<ArgumentException>(() => _personService.AddPerson(personAddRequest));
+        }
+
+        [Fact]
+        public void AddPerson_ProperPersonDetails()
+        {
+            //Arrange
+            PersonAddRequest? personAddRequest = new PersonAddRequest()
+            {
+                PersonName = "John Doe",
+                Email = "johndoe@gmail.com",
+                DateOfBirth = new DateTime(1998, 5, 15),
+                Gender = GenderOptions.Male,
+                CountryID = Guid.Parse("d2719f8a-3f7c-4f2f-8d91-123456789abc"),
+                Address = "123 Main Street, New York",
+                ReceiveNewsLetters = true
+            };
+            //Act
+            PersonResponse? personResponse = _personService.AddPerson(personAddRequest);
+            List<PersonResponse> persons_list = _personService.GetAllPersons();
+            //Assert
+            Assert.NotNull(personResponse);
+            //Assert.Equal(personAddRequest.PersonName, personResponse.PersonName);
+            Assert.NotEqual(Guid.Empty, personResponse.PersonID);
+            Assert.Contains(personResponse, persons_list);
+        }
+        #endregion
+
+        #region GetPersonByPersonID Tests[Fact]
+        /// <summary>
+        /// If the GetPersonByPersonID method is called with a null PersonID, it should return null, indicating that no person can be retrieved without a valid identifier.
+        /// </summary>
+        [Fact]
+        public void GetPersonByPersonID_PersonIDIsNull()
+        {
+            //Arrange
+            Guid? personID = null;
+            //Act
+            PersonResponse? personResponse = _personService.GetPersonByPersonID(personID);
+            //Assert
+            Assert.Null(personResponse);
+        }
+
+        [Fact]
+        public void GetPersonByPersonID_WithPersonID()
+        {
+            // Arrange
+            CountryAddRequest? countryAddRequest = new CountryAddRequest() { CountryName = "India" };
+            CountryResponse? countryResponse = _countriesService.AddCountry(countryAddRequest);
+
+            PersonAddRequest? personAddRequest = new PersonAddRequest()
+            {
+                PersonName = "Jane Doe",
+                Email = "sample@gmail.com",
+                DateOfBirth = new DateTime(1995, 10, 20),
+                Gender = GenderOptions.Female,
+                CountryID = countryResponse.CountryId,
+                Address = "456 Elm Street, Los Angeles",
+                ReceiveNewsLetters = false
+
+            };
+            PersonResponse? personResponse = _personService.AddPerson(personAddRequest);
+            // Act
+            PersonResponse? retrievedPerson = _personService.GetPersonByPersonID(personResponse.PersonID);
+            // Assert
+            Assert.NotNull(retrievedPerson);
+            Assert.Equal(personResponse, retrievedPerson);
+        }
+        #endregion
+    }
+}

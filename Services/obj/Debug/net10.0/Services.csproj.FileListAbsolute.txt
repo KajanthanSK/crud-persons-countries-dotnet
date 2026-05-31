@@ -1,0 +1,17 @@
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\Services.deps.json
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\Services.dll
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\Services.pdb
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\Entities.dll
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\ServiceContracts.dll
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\ServiceContracts.pdb
+C:\ASP.Net\XUNIT\CRUDExample\Services\bin\Debug\net10.0\Entities.pdb
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.csproj.AssemblyReference.cache
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.AssemblyInfoInputs.cache
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.AssemblyInfo.cs
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.csproj.CoreCompileInputs.cache
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.csproj.Up2Date
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.dll
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\refint\Services.dll
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\Services.pdb
+C:\ASP.Net\XUNIT\CRUDExample\Services\obj\Debug\net10.0\ref\Services.dll
